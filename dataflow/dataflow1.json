@@ -43,15 +43,17 @@
 				"          Customer_Name,",
 				"          Product,",
 				"          Quantity,",
-				"          Amount)) ~> aggregate1",
+				"          Amount),",
+				"     Order_ID = ERROR_FUNCTION('')) ~> aggregate1",
 				"aggregate1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     partitionFileNames:[''],",
+				"     partitionFileNames:['sales_sink'],",
 				"     umask: 0022,",
 				"     preCommands: [],",
 				"     postCommands: [],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
