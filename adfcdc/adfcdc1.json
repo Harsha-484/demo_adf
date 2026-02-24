@@ -7,7 +7,28 @@
 					{
 						"name": "dbo.Employee",
 						"properties": {
-							"schema": [],
+							"schema": [
+								{
+									"name": "EmpID",
+									"dataType": "integer"
+								},
+								{
+									"name": "EmpName",
+									"dataType": "string"
+								},
+								{
+									"name": "Salary",
+									"dataType": "decimal(10,2)"
+								},
+								{
+									"name": "Department",
+									"dataType": "string"
+								},
+								{
+									"name": "LastModifiedDate",
+									"dataType": "timestamp"
+								}
+							],
 							"dslConnectorProperties": [
 								{
 									"name": "schemaName",
@@ -24,6 +45,14 @@
 								{
 									"name": "netChanges",
 									"value": true
+								},
+								{
+									"name": "allowSchemaDrift",
+									"value": false
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": false
 								}
 							]
 						}
@@ -76,7 +105,28 @@
 					{
 						"name": "dbo.Employee1",
 						"properties": {
-							"schema": [],
+							"schema": [
+								{
+									"name": "EmpID",
+									"dataType": "integer"
+								},
+								{
+									"name": "EmpName",
+									"dataType": "string"
+								},
+								{
+									"name": "Salary",
+									"dataType": "decimal(10,2)"
+								},
+								{
+									"name": "Department",
+									"dataType": "string"
+								},
+								{
+									"name": "LastModifiedDate",
+									"dataType": "timestamp"
+								}
+							],
 							"dslConnectorProperties": [
 								{
 									"name": "schemaName",
@@ -107,6 +157,14 @@
 								{
 									"name": "defaultToUpsert",
 									"value": true
+								},
+								{
+									"name": "allowSchemaDrift",
+									"value": false
+								},
+								{
+									"name": "inferDriftedColumnTypes",
+									"value": false
 								}
 							]
 						}
@@ -180,7 +238,73 @@
 							"type": "linkedservicetype"
 						},
 						"attributeMappingInfo": {
-							"attributeMappings": []
+							"attributeMappings": [
+								{
+									"name": "Department",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "Department",
+										"entity": "dbo.Employee",
+										"entityConnectionReference": {
+											"connectionName": "AzureSqlDatabase1",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "EmpID",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "EmpID",
+										"entity": "dbo.Employee",
+										"entityConnectionReference": {
+											"connectionName": "AzureSqlDatabase1",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "EmpName",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "EmpName",
+										"entity": "dbo.Employee",
+										"entityConnectionReference": {
+											"connectionName": "AzureSqlDatabase1",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "LastModifiedDate",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "LastModifiedDate",
+										"entity": "dbo.Employee",
+										"entityConnectionReference": {
+											"connectionName": "AzureSqlDatabase1",
+											"type": "linkedservicetype"
+										}
+									}
+								},
+								{
+									"name": "Salary",
+									"type": "Direct",
+									"functionName": "",
+									"attributeReference": {
+										"name": "Salary",
+										"entity": "dbo.Employee",
+										"entityConnectionReference": {
+											"connectionName": "AzureSqlDatabase1",
+											"type": "linkedservicetype"
+										}
+									}
+								}
+							]
 						}
 					}
 				],
@@ -190,7 +314,7 @@
 		"Policy": {
 			"recurrence": {
 				"frequency": "Minute",
-				"interval": 15
+				"interval": 1
 			},
 			"mode": "Microbatch"
 		},
