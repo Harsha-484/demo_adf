@@ -85,6 +85,28 @@
 								{
 									"name": "tableName",
 									"value": "Employee1"
+								},
+								{
+									"name": "keys",
+									"value": [
+										"EmpID"
+									]
+								},
+								{
+									"name": "deletable",
+									"value": true
+								},
+								{
+									"name": "updateable",
+									"value": true
+								},
+								{
+									"name": "upsertable",
+									"value": true
+								},
+								{
+									"name": "defaultToUpsert",
+									"value": true
 								}
 							]
 						}
@@ -172,6 +194,7 @@
 			},
 			"mode": "Microbatch"
 		},
+		"status": "Started",
 		"allowVNetOverride": false
 	}
 }
