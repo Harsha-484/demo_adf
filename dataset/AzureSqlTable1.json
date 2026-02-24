@@ -1,0 +1,25 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "TableName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastProcessedLSN",
+				"type": "binary"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CDC_Watermark"
+		}
+	}
+}
