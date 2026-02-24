@@ -247,7 +247,7 @@
 					{
 						"TargetEntities": [
 							{
-								"name": "demo1",
+								"name": "demo1/dbo.Employee",
 								"properties": {
 									"schema": [],
 									"dslConnectorProperties": [
@@ -258,6 +258,10 @@
 										{
 											"name": "fileSystem",
 											"value": "demo1"
+										},
+										{
+											"name": "folderPath",
+											"value": "dbo.Employee"
 										}
 									]
 								}
@@ -304,7 +308,7 @@
 						},
 						"DataMapperMappings": [
 							{
-								"targetEntityName": "demo1",
+								"targetEntityName": "demo1/dbo.Employee",
 								"sourceEntityName": "dbo.Employee",
 								"sourceConnectionReference": {
 									"connectionName": "AzureSqlDatabase1",
