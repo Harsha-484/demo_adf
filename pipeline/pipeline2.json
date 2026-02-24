@@ -17,7 +17,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "SELECT LastProcessedLSN\nFROM dbo.CDC_Watermark\nWHERE TableName = 'Employee';",
+						"sqlReaderQuery": "SELECT \n    CONVERT(VARCHAR(50), LastProcessedLSN, 1) AS LastProcessedLSN\nFROM dbo.CDC_Watermark\nWHERE TableName = 'Employee';",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -49,7 +49,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "SELECT sys.fn_cdc_get_max_lsn() AS CurrentLSN;",
+						"sqlReaderQuery": "SELECT \n    CONVERT(VARCHAR(50), sys.fn_cdc_get_max_lsn(), 1) AS CurrentLSN;",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -81,7 +81,10 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
-						"sqlReaderQuery": "SELECT *\nFROM cdc.fn_cdc_get_all_changes_dbo_Employee(\n    @from_lsn,\n    @to_lsn,\n    'all'\n)\nWHERE __$operation = 2;",
+						"sqlReaderQuery": {
+							"value": "@concat(\n'SELECT * FROM cdc.fn_cdc_get_all_changes_dbo_Employee(',\nactivity('Lookup1').output.firstRow.LastProcessedLSN,\n',',\nactivity('Lookup2').output.firstRow.CurrentLSN,\n',''all'') WHERE __$operation = 2'\n)",
+							"type": "Expression"
+						},
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -142,7 +145,10 @@
 					"storedProcedureName": "[dbo].[usp_Update_Watermark]",
 					"storedProcedureParameters": {
 						"NewLSN": {
-							"value": "to_lsn",
+							"value": {
+								"value": "@activity('Lookup2').output.firstRow.CurrentLSN",
+								"type": "Expression"
+							},
 							"type": "String"
 						}
 					}
