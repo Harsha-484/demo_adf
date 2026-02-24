@@ -247,21 +247,21 @@
 					{
 						"TargetEntities": [
 							{
-								"name": "demo1/dbo.Employee",
+								"name": "demo/sales/sales2",
 								"properties": {
 									"schema": [],
 									"dslConnectorProperties": [
 										{
 											"name": "container",
-											"value": "demo1"
+											"value": "demo"
 										},
 										{
 											"name": "fileSystem",
-											"value": "demo1"
+											"value": "demo"
 										},
 										{
 											"name": "folderPath",
-											"value": "dbo.Employee"
+											"value": "sales/sales2"
 										}
 									]
 								}
@@ -308,7 +308,7 @@
 						},
 						"DataMapperMappings": [
 							{
-								"targetEntityName": "demo1/dbo.Employee",
+								"targetEntityName": "demo/sales/sales2",
 								"sourceEntityName": "dbo.Employee",
 								"sourceConnectionReference": {
 									"connectionName": "AzureSqlDatabase1",
@@ -325,10 +325,11 @@
 				"Policy": {
 					"recurrence": {
 						"frequency": "Minute",
-						"interval": 15
+						"interval": 1
 					},
 					"mode": "Microbatch"
 				},
+				"status": "Stopped",
 				"allowVNetOverride": false
 			},
 			"dependsOn": [
